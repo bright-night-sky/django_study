@@ -37,7 +37,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 끝에 'bookmark'를 추가한다.
     'bookmark',
+    # 맨 끝에 ,(콤마)를 써 넣는 것도 잊지말자.
+    # 빼놓더라도 오류는 나지 않지만 다른 앱을 추가할 때 빈번이 실수하는 부분이라서 습관처럼 콤마를 추가해두는 것이 좋다.
+    # INSTALLED_APPS에 추가했다면 이제 데이터베이스 관련 명령이 정상적으로 동작할 것이다.
+    # 터미널을 열고 python manage.py makemigrations bookmark를 입력하고 엔터를 치자.
+
+    # 북마크 앱에서 데이터베이스 관련 변경사항이 있는지 확인하고 변경할 내용이 있다면 파일을 생성한다.
+    # 이런 파일을 마이그레이션 파일이라고 한다.
+    # 각 파일은 번호가 하나씩 증가하며 앱폴더에 있는 migrations 폴더에 순서대로 쌓인다.
+    # 마이그레이션 파일의 내용을 실제 데이터베이스에 적용하기 위해 python manage.py migrate bookmark를 입력하고 엔터를 치자.
+    # 모델과 연결된 데이터베이스가 생성됐다.
+    # 이제 북마크를 추가, 확인, 수정, 삭제해야하는데 당장은 페이지를 만들지 않았기 때문에 관리자 페이지를 통해서 확인해야한다.
+    # -> bookmark/admin.py로 이동
 ]
 
 MIDDLEWARE = [

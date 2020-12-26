@@ -1,0 +1,20 @@
+터미널에 pip install django 를 치고 엔터를 눌러 장고를 설치한다.
+
+장고를 설치하면 장고 프로젝트를 설치한다. 프로젝트를 생성할 때는 [startproject] 명령을 사용하고 [config]는 설정 폴더의 이름이다.
+django-admin startproject config . 으로 장고 프로젝트를 설치한다.
+
+바로 데이터베이스를 초기화하고 관리자 계정을 생성한다.
+python maange.py migrate 로 데이터베이스 초기화,
+python manage.py createsuperuser 로 관리자 계정을 생성한다.
+
+여기까지 성공했다면 서버를 실행하고 관리자 페이지에 로그인해보자.
+python manage.py runserver 로 서버를 실행하고,
+http://127.0.0.1/admin에 접속해 로그인하고 관리자 페이지에 들어가보자.
+
+확인을 끝내면 파이참 터미널에서 Ctrl+C를 눌러 서버를 종료시키고 Bookmark 앱을 생성해보자.
+터미널에서 python manage.py startapp bookmark 를 치고 엔터를 눌러 Bookmark 앱을 생성한다.
+앱을 생성하면 관련 폴더와 파일이 생긴다.
+중요한 파일들은 admin.py, models.py, views.py이다.
+기능을 완성하면서 각 파일들의 내용을 채워보자.
+
+-> models.py로

@@ -2,6 +2,12 @@ from django.urls import path
 from .views import BookmarkListView
 
 urlpatterns = [
+    # path의 첫 번째 인수는 ''를 보면 bookmark/ 이하 부분이 없다라고 해석할 수 있다.
+    # 그럼 북마크 앱의 루트 페이지 같은 역할을 한다고 생각하면 된다.
+    # 이런 주소로 접속했을 때 BookmarkListView라는 뷰를 호출하겠다라는 의미이다.
+    # 함수형 뷰라면 이름만 써주면 되지만 클래스형 뷰일 경우 .as_view()라고 꼭 붙여줘야 정상적으로 동작한다.
+    # 마지막 인자인 name은 설정한 이름을 가지고 해당 URL 패턴을 찾을 수 있도록 하는 역할을 한다.
+
     # http://127.0.0.1/bookmark/???
     # 앞의 bookmark까지는 1차에서 다 인식하고 왔다.
     # 밑의 주소는 http://127.0.0.1/bookmark/이다.
