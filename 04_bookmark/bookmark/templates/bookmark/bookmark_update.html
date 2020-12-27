@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Bookmark Add{% endblock %}
+
+{% block content %}
+    <!-- get 방식은 주소에 포함돼서 넘어가기 때문에 보안성이 없다. -->
+    <!-- 특히 로그인은 get 방식으로 구현하면 안된다. -->
+    <form action="" method="post">
+        <!-- form 태그 안쪽에는 csrf_token 값이 있는데 이는 CSRF(Cross Site Request Forgery) 공격을 막기 위한 용도이다. -->
+        <!-- 해커가 만든 외부 사이트에서 우리가 만든 사이트에 로그인 한 사용자 권한으로 공격하는 것을 막기 위한 용도이다. -->
+        {% csrf_token %}
+        <!-- form.as_p는 클래스형 뷰의 옵션 값으로 설정한 필드를 출력하는데 각 필드 폼 태그들을 p태그로 감싸 출력하는 코드이다. -->
+        {{ form.as_p }}
+        <input type="submit" value="Update" class="btn btn-info btn-sm">
+    </form>
+    <!-- Update 기능도 링크로 연결해야 하니 bookmark_list.html에 링크도 연결하자. -->
+{% endblock %}

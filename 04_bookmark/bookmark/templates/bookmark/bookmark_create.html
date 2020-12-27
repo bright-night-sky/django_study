@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Bookmark Add{% endblock %}
+
+{% block content %}
+    <!-- form 태그는 html로부터 서버로 자료를 전달하기 위해 사용하는 코드이다. -->
+    <!-- 회원가입, 로그인, 글쓰기 등 다양한 기능에 사용한다. -->
+    <!-- action 메서드는 자료를 전달할 대상 페이지이다. 비워둘 경우 현재 페이지로 전달한다. -->
+    <!-- 장고에서는 action이 비워져있는 경우가 많은데, 이는 입력받는 화면가 입력받은 것을 처리한 것을 같은 화면에서 처리하는 경우가 많기 때문이다. -->
+    <!-- method는 HTTP 메서드 종류를 설정한다. -->
+    <form action="" method="post">
+        <!-- form 태그 안쪽에는 csrf_token 값이 있는데 이는 CSRF(Cross Site Request Forgery) 공격을 막기 위한 용도이다. -->
+        <!-- 해커가 만든 외부 사이트에서 우리가 만든 사이트에 로그인 한 사용자 권한으로 공격하는 것을 막기 위한 용도이다. -->
+        {% csrf_token %}
+        <!-- form.as_p는 클래스형 뷰의 옵션 값으로 설정한 필드를 출력하는데 각 필드 폼 태그들을 p태그로 감싸 출력하는 코드이다. -->
+        {{ form.as_p }}
+        <!-- 마지막으로 submint 버튼은 입력 완료를 위해 만들어준다. -->
+        <input type="submit" value="Add" class="btn btn-info btn-sm">
+    </form>
+    <!-- 코드를 다 입력했으니 입력이 잘 되는지 확인해보자. -->
+    <!-- 잘 작동하니 목록 페이지 위쪽에 있는 [Add Bookmark] 링크가 동작하도록 만들자. -->
+    <!-- bookmark_list.html로 이동 -->
+{% endblock %}

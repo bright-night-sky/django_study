@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -68,7 +68,11 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # 루트 폴더에 templates를 만들고 나면 여기에 설정을 추가해야한다.
+        # 원래 'DIRS' 키는 비어있는 리스트이다.
+        # 'DIRS'의 배열에 os.path.join(BASE_DIR, 'templates')를 추가한다.
+        # 우리가 만든 폴더를 템플릿 검색할 때 살펴보라고 추가한 것이다.
+        'DIRS': [ os.path.join(BASE_DIR, 'templates') ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -132,3 +136,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# 정적(Static) 파일 사용하기
+# 프로젝트 루트 폴더 내에 있는 static이라는 폴더를 사용한다는 코드
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]

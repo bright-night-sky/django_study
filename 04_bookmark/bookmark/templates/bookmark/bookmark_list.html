@@ -1,42 +1,61 @@
-<!-- 템플릿 만들기템플릿은 프론트엔드 소스코드가 저장되는 파일들이면서 장고에서 데이터를 껴넣는 양식 파일이기도 하다. -->
-<!-- 어떤 뷰를 만들 때는 그 뷰의 내용을 어떻게 브라우저에 표시할지 템플릿을 가지고 결정한다. -->
+{% extends 'base.html' %}
 
-<!-- 템플릿 파일은 정해진 위치가 있다. -->
-<!-- 앱 폴더 내부에 templates 폴더에 위치해야 하며 보통 앱 이름으로 폴더를 한 번 더 만들어 저장한다. -->
-<!-- templates/bookmark 폴더를 만들고 해당 폴더를 마우스 오른쪽 버튼으로 클릭해 [New -> HTML File] 메뉴를 선택한다. -->
+{% block title %}Bookmark List{% endblock %}
 
-<!-- 소스 코드 첫 부분에는 북마크 추가하기 링크를 만들어 두었고, 그 다음부터 북마크의 목록을 출력하기 위해서 table 태그를 사용한다. -->
-<div class="btn-group">
-    <a href="#" class="btn btn-info">Add Bookmark</a>
-</div>
-<p></p>
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Site</th>
-            <th scope="col">URL</th>
-            <th scope="col">Modify</th>
-            <th scope="col">Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- 제네릭 뷰에서는 모델의 오브젝트가 여러 개일 경우 object_list라는 변수로 전달한다. -->
-        <!-- 이 object_list에서 bookmark라는 이름으로 북마크를 하나씩 꺼내 북마크 당 한 줄씩 출력할 것이다. -->
-        <!-- 한 북마크는 tr 태그로 묶는다. -->
-        <!-- 각각의 북마크를 출력할 때 사이트 이름 url 등을 출력하고 수정 버튼과 지우기 버튼도 함께 만들어뒀다. -->
-        <!-- 템플릿 문법에서 중괄호 퍼센트는 기능 태그이다. -->
-        {% for bookmark in object_list %}
+{% block content %}
+    <!-- 템플릿 만들기템플릿은 프론트엔드 소스코드가 저장되는 파일들이면서 장고에서 데이터를 껴넣는 양식 파일이기도 하다. -->
+    <!-- 어떤 뷰를 만들 때는 그 뷰의 내용을 어떻게 브라우저에 표시할지 템플릿을 가지고 결정한다. -->
+
+    <!-- 템플릿 파일은 정해진 위치가 있다. -->
+    <!-- 앱 폴더 내부에 templates 폴더에 위치해야 하며 보통 앱 이름으로 폴더를 한 번 더 만들어 저장한다. -->
+    <!-- templates/bookmark 폴더를 만들고 해당 폴더를 마우스 오른쪽 버튼으로 클릭해 [New -> HTML File] 메뉴를 선택한다. -->
+
+    <!-- 소스 코드 첫 부분에는 북마크 추가하기 링크를 만들어 두었고, 그 다음부터 북마크의 목록을 출력하기 위해서 table 태그를 사용한다. -->
+    <div class="btn-group">
+        <!-- href 속성값에 주소를 출력하기 위해 url 템플릿 태그를 사용했다. -->
+        <!-- [add]라는 이름을 가진 URL 패턴을 찾아서 URL을 출력해라라는 의미이다. -->
+        <!-- 코드를 수정한 뒤 목록에서 해당 링크를 클릭하면 북마크 추가 페이지로 이동하는 것을 확인할 수 있다. -->
+        <a href="{% url 'add' %}" class="btn btn-info">Add Bookmark</a>
+    </div>
+    <p></p>
+    <table class="table">
+        <thead>
             <tr>
-                <!-- 중괄호 중괄호는 출력이 되는 태그이다. print라고 생각하면 된다. -->
-                <td>{{ forloop.counter }}</td>
-                <td><a href="#">{{ bookmark.site_name }}</a></td>
-                <td><a href="{{ bookmark.url }}" target="_blank">{{ bookmark.url }}</a></td>
-                <td><a href="#" class="btn btn-success btn-sm">Modify</a></td>
-                <td><a href="#" class="btn btn-danger btn-sm">Delete</a></td>
+                <th scope="col">#</th>
+                <th scope="col">Site</th>
+                <th scope="col">URL</th>
+                <th scope="col">Modify</th>
+                <th scope="col">Delete</th>
             </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <!-- 제네릭 뷰에서는 모델의 오브젝트가 여러 개일 경우 object_list라는 변수로 전달한다. -->
+            <!-- 이 object_list에서 bookmark라는 이름으로 북마크를 하나씩 꺼내 북마크 당 한 줄씩 출력할 것이다. -->
+            <!-- 한 북마크는 tr 태그로 묶는다. -->
+            <!-- 각각의 북마크를 출력할 때 사이트 이름 url 등을 출력하고 수정 버튼과 지우기 버튼도 함께 만들어뒀다. -->
+            <!-- 템플릿 문법에서 중괄호 퍼센트는 기능 태그이다. -->
+            {% for bookmark in object_list %}
+                <tr>
+                    <!-- 중괄호 중괄호는 출력이 되는 태그이다. print라고 생각하면 된다. -->
+                    <td>{{ forloop.counter }}</td>
+                    <!-- href 속성값을 url 템플릿 태그를 사용하도록 변경한다. -->
+                    <!-- 템플릿 태그에 pk 값을 같이 전달해 제대로된 URL이 만들어져 출력할 수 있도록 한다. -->
+                    <!-- 모든 코드를 변경하고 북마크 목록 화면에서 사이트 이름을 클릭해보자. -->
+                    <!-- 클릭했을 때 북마크 확인 화면으로 이동하면 정상 동작하는 것이다. -->
+                    <td><a href="{% url 'detail' pk=bookmark.id %}">{{ bookmark.site_name }}</a></td>
+                    <td><a href="{{ bookmark.url }}" target="_blank">{{ bookmark.url }}</a></td>
+                    <!-- url 템플릿 코드를 사용해 주소를 만들어 출력한다. -->
+                    <!-- URL 패턴에는 pk라는 값이 있기 때문에 url 템플릿 태그에도 pk 값을 전달해야 url을 만들 수 있다. -->
+                    <!-- 확인해보자. -->
+                    <!-- 수정 화면으로 이동하면 사이트 이름이나 주소를 수정하고 [Update] 버튼을 누르자. -->
+                    <!-- 수정이 안되고 오류 메시지가 뜬다. 물론 데이터베이스에 값은 잘 저장되어 있을 것이다. -->
+                    <!-- 우리가 만난 이 메시지는 '수정을 잘 마쳤는데 이동할 페이지가 없다'라는 이야기이다. -->
+                    <td><a href="{% url 'update' pk=bookmark.id %}" class="btn btn-success btn-sm">Modify</a></td>
+                    <td><a href="{% url 'delete' pk=bookmark.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-<!-- HTML 파일을 새로 만들었으니 서버를 다시 실행하고 결과를 확인해보자. -->
+    <!-- HTML 파일을 새로 만들었으니 서버를 다시 실행하고 결과를 확인해보자. -->
+{% endblock %}

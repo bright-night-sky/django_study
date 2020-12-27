@@ -16,6 +16,10 @@
 # 잘 만드는 방법은 뒤에서 설명하겠다.
 
 from django.db import models
+from django.urls import reverse
+# 클래스형 뷰에서는 reverse_lazy를 썼는데 위의 reverse와 차이점이 있다.
+# URL 패턴을 불러오는 차이
+# 모델에서는 reverse를 쓰지만, 클래스형 뷰에서 필드값을 쓸 때는 reverse_lazy를 쓴다.
 
 # Create your models here.
 # models.py에 models.Model을 상속받는 Bookmark 클래스를 만든다.
@@ -54,6 +58,15 @@ class Bookmark(models.Model):
         # 코드를 변경했다면 관리자 페이지로 이동해 북마크 모델을 새로고침해보자.
         # 변경된 목록을 보면 __str__ 메서드에서 반환한 값이 출력되고 있는 것을 알 수 있다.
         # 이 메서드의 내용은 이후에 삭제 화면에서도 동일하게 나타난다.
+
+    # 북마크 추가 뷰를 만들 때 success_url은 설정해봤으니 이번에는 get_absolute_url을 만들어보자.
+    # get_absolute_url 메서드는 장고에서 사용하는 메서드이다.
+    # 보통은 객체의 상세 화면 주소를 반환하게 만든다.
+    # get_abolute_url은 장고에서 제공하는 기능이라서 자동완성이 제공되지 않는다. 오타 확인이 필요하다.
+    def get_absolute_url(self):
+        # 이 때 사용하는 reverse 메서드는 URL 패턴의 이름과 추가 인자를 전달받아 URL을 생성하는 메서드이다.
+        return reverse('detail', args=[str(self.id)])
+        # 메서드를 작성하고 다시 수정 기능을 테스트해보자. 잘 된다.
 
 # 모델을 만들었다 => 데이터베이스에 어떤 데이터들을 어떤 형태로 넣을지 결정했다는 말!
 # 모델을 만들었으면
