@@ -138,5 +138,17 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # 정적(Static) 파일 사용하기
+# 정적 파일이라는 것은 로컬 서버에 있는 여러 가지 파일을 의미한다.
+# css나 js 파일일 수도 있고 이미지 파일일 수도 있다.
+# 이런 정적 파일을 사용하는 방법을 알아보자.
+
+# 정적 파일도 템플릿 파일처럼 정해진 위치가 있다.
+# 각 앱 폴더 밑에 static 폴더를 보통 사용하고 별도 폴더를 사용하려면 settings.py 파일에 설정을 해야한다.
+# 각 앱 폴더 아래에 static 폴더를 두는 방법은 튜토리얼에서 살펴봤기 때문에 다른 방법을 살펴보자.
+
+# 프로젝트 루트에 static 폴더를 만든다.
+# 그리고 settings.py 맨 아래쪽에 STATICFILES_DIRS 라는 변수를 추가한다.
 # 프로젝트 루트 폴더 내에 있는 static이라는 폴더를 사용한다는 코드
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# 그리고 static 폴더에 style.css 파일을 추가하자.
+# static 폴더를 마우스 오른쪽 버튼으로 클릭하고 [New -> File] 메뉴를 선택하고 style.css를 입력하고 OK 버튼을 클릭한다.

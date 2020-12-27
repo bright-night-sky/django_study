@@ -58,4 +58,44 @@
     </table>
 
     <!-- HTML 파일을 새로 만들었으니 서버를 다시 실행하고 결과를 확인해보자. -->
+
+    <!-- 클래스형 뷰에서 paginate_by 값을 사용하면 자동으로 Page 객체를 생성한다. -->
+    <!-- 이 객체를 사용해 이전 페이지, 이후 페이지, 현재 페이지를 알 수 있다. -->
+    <!-- 그리고 페이지의 범위도 알 수 있기 때문에 템플릿 문법을 사용해 각각의 값들을 출력했다. -->
+    <!-- 자세한 내용은 Paginator 객체 문서를 참조하자. -->
+    {% block pagination %}
+        {% if is_paginated %}
+            <ul class="pagination justify-content-center pagination-sm">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="{% url 'list' %}?page={{ page_obj.previous_page_number }}" tabindex="-1">Previous</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+                {% endif %}
+
+                {% for object in page_obj.paginator.page_range %}
+                    <li class="page-item {% if page_obj.number == forloop.counter %}disabled{% endif %}">
+                        <a class="page-link" href="{{ request.path }}?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+                    </li>
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="{% url 'list' %}?page={{ page_obj.next_page_number }}">Next</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    {% endblock %}
+    <!-- 클래스형 뷰를 사용하면 다양한 기능들을 손쉽게 사용할 수 있고, 템플릿 파일만 조금 신경 쓰면 디자인도 입힐 수 있었다. -->
+    <!-- 하지만 디자인을 입힐 때 알고 있어야할 기능이 하나 더 있다. -->
+    <!-- 부트스트랩을 온라인을 통해 css 파일과 js 파일을 불러와서 사용했는데 로컬 서버에 있는 파일도 사용하는 방법을 알아보자. -->
+    <!-- settings.py 맨 밑으로 -->
 {% endblock %}
