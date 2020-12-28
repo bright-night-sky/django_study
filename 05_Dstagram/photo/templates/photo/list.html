@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}- List{% endblock %}
+
+{% block content %}
+    <!-- 템플릿으로 전달되는 사진 오브젝트 목록을 photos라는 변수명으로 설정해둿었다.(views.py의 photo_list) -->
+    <!-- 그래서 for문을 이용해 photos 변수에서 하나씩 꺼내 post라는 변수명으로 사용한다. -->
+    <!-- 각 값을 출력하는 부분을 잘 살펴보자. -->
+    <!-- 이미지의 주소를 출력할 때는 photo.url을 사용하고 -->
+    <!-- 사용자명은 author.username을 사용한다. -->
+    {% for post in photos %}
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 panel panel-default">
+                <p><img src="{{ post.photo.url }}" style="width:100%;"></p>
+                <button type="button" class="btn btn-xs btn-info">
+                    {{ post.author.username }}
+                </button>
+                <p>{{ post.text|linebreaksbr }}</p>
+                <!-- 댓글달기 버튼은 상세 페이지로 이동하는 링크이다. -->
+                <p class="text-right">
+                    <a href="{% url 'photo:photo_detail' pk=post.id %}" class="btn btn-xs btn-success">댓글달기</a>
+                </p>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+<!-- 화면을 확인해보자. -->
+<!-- 각 화면을 확인할 때는 runserver 명령을 이용해 서버를 실행하고 확인한다. -->
+<!-- 파일을 새로 만들었을 때는 항상 서버를 종료했다가 다시 실행해야한다. -->
+<!-- python manage.py runserver -->
+
+<!-- 목록 화면에서는 사진과 작성자 이름, 설명 문고, 댓글 달기 버튼을 볼 수 있다. -->
+<!-- 이상한 점은 업로드한 이미지가 제대로 보이지 않는다는 것이다. -->
+<!-- 이 문제는 템플릿을 모두 만든 후에 조치하겠다. -->
+
+<!-- photo/templates/photo/upload.html로 이동 -->

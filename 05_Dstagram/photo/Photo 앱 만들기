@@ -1,0 +1,15 @@
+Photo 앱 만들기
+
+Dstagram 앱의 중심인 기능은 바로 사진 관리이다.
+사진 관리를 위해서 photo 앱을 만들어보자.
+
+5.3.1 앱 만들기
+앱을 만들기 위해서는 startapp 명령을 사용한다.
+터미널에 python manage.py startapp photo 명령
+
+앱을 만들고 나면 settings.py 파일에 INSTALLED_APPS 수정하러 가기
+
+
+더 깊이 공부해야될 것
+캐싱, CDN 설정, 인프라 스트럭쳐 더 고성능으로 만드는 법을 고민하기
+서비스는 일단 만들어봐야 고민할 수 있다.
