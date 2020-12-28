@@ -1,0 +1,21 @@
+<!-- 수정 뷰에서도 form을 사용하고 enctype 옵션을 사용하고 있다. -->
+<!-- 업로드 뷰와 다른 점은 일부 문자열 뿐이다. -->
+
+{% extends 'base.html' %}
+
+{% block title %}- Update{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 panel panel-default">
+            <form action="" method="post" enctype="multipart/form-data">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <input type="submit" class="btn btn-primary" value="Update">
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+{% endblock %}
+<!-- 수정 기능을 이용해 수정을 해보고 상세 화면으로 바로 이등하는지 그리고 내용은 잘 수정되는지 확인해보자. -->

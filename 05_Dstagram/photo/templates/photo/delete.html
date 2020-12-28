@@ -1,0 +1,28 @@
+<!-- 마지막으로 삭제 뷰이다. -->
+<!-- 삭제 확인 메시지를 출력하기 위허서 객체를 그대로 출력했고 -->
+<!-- form 태그를 사용해 삭제 확인을 진행한다. -->
+<!-- 여기서는 파일을 전송하는 것은 아니기 때문에 enctype은 사용하지 않는다. -->
+
+{% extends 'base.html' %}
+
+{% block title %}- Delete{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 panel panel-default">
+            <div class="alert alert-info">
+                Do you want to delete {{ object }}?
+            </div>
+            <form action="" method="post">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <input type="submit" class="btn btn-danger" value="Confirm">
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+{% endblock %}
+
+<!-- 삭제 화면도 마찬가지로 잘 동작하는지 확인해보자. -->
+<!-- 5.3.9 사진 표시하기 : 루트 urls.py로 이동 -->

@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 # include를 임포트하고
 from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,3 +26,11 @@ urlpatterns = [
     path('', include('photo.urls')),
 ]
 # 5.3.8 템플릿 분리와 확장 -> base.html로 이동
+
+# 5.3.9 사진 표시하기
+# 기본 뷰는 다 완성했다. 하지만 사진이 제대로 출력되지 않는다.
+# 사진을 출력하기 위해서는 몇 줄의 코드를 더 입력해야 한다.
+# config 폴더의 루트 urls.py를 수정하자.
+# static을 사용해서 MEDIA_URL에 해당하는 주소를 가진 요청에 대해서는 MEDIA_ROOT에서 찾아서 응답하도록 urlpatterns에 추가하는 구문이다.
+# 이 구문은 디버그 모드가 True일 때만 동작한다.
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

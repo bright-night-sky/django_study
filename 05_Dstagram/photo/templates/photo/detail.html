@@ -1,0 +1,31 @@
+<!-- 디테일 뷰에서는 사진의 정보를 출력한다. -->
+<!-- 목록 화면과 거의 동일하다. -->
+<!-- 대신 댓글 달기 버튼을 없애고 수정과 삭제 버튼을 추가했다. -->
+
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ object.text|truncatechars:10 }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 panel panel-default">
+            <p><img src="{{ object.photo.url }}" style="width:100%;"></p>
+            <button type="button" class="btn btn-outline-primary btn-sm">
+                {{ object.author.username }}
+            </button>
+            <p>{{ object.text|linebreaksbr }}</p>
+
+            <a href="{% url 'photo:photo_delete' pk=object.id %}" class="btn btn-outline-danger btn-sm float-right">Delete</a>
+            <a href="{% url 'photo:photo_update' pk=object.id %}" class="btn btn-outline-success btn-sm float-right">Update</a>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+{% endblock %}
+
+<!-- 상세 화면도 마찬가지로 사진은 정상적으로 표시되지 않는다. -->
+<!-- 아마도 뷰에서 발생한 문제는 아니라는 유추를 해볼 수 있다. -->
+
+<!-- photo/templates/photo/update.html로 -->

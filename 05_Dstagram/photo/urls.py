@@ -23,8 +23,8 @@ urlpatterns = [
     # path 함수에 인수로 전달할 때는 as_view 안에 클래스 변수들을 설정해 사용한다.
     path('detail/<int:pk>/', DetailView.as_view(model=Photo, template_name='photo/detail.html'), name='photo_detail'),
     path('upload/', PhotoUploadView.as_view(), name='photo_upload'),
-    path('delete/<int:pk>/', DeleteView.as_view(), name='photo_delete'),
-    path('update/<int:pk>/', UpdateView.as_view(), name='photo_update'),
+    path('delete/<int:pk>/', PhotoDeleteView.as_view(), name='photo_delete'),
+    path('update/<int:pk>/', PhotoUpdateView.as_view(), name='photo_update'),
 ]
 
 # 뷰의 URL들은 다 설정했으니 이제 루트 urls.py에 앱의 urls.py를 연결해주겠다.
