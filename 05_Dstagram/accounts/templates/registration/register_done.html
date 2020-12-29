@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}- Registration Done{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 panel panel-default">
+            <div class="alert alert-info">Registration Success. Welcome, {{ new_user.username }}</div>
+            <a class="btn btn-info" href="/">Move to main</a>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+{% endblock %}
+
+<!-- 뷰를 위한 템플릿을 만들었다. -->
+<!-- 마지막으로 회원 가입을 진행하기 위해 base.html에 회원 가입 링크를 연결하자. -->

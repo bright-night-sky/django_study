@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}- Logout{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 panel panel-default">
+            <div class="alert alert-info">You have been successfully logged out.</div>
+            <a class="btn btn-primary" href="{% url 'login' %}">Click to Login</a>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+{% endblock %}
+
+<!-- login.html, logout.html 두 개의 템플릿을 완성하면 메인 메뉴에 있는 링크도 연결을 해줘야한다. -->
+<!-- base.html에서 login, logout 링크를 찾아서 href 속성을 수정한다. -->

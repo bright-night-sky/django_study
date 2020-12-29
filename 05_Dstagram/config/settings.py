@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     # apps.py에서 확인 가능한 이름이다.
     # 이렇게 늘려서 쓰는 것은 시그널을 다룰 때 해보자. 지금은 불필요하다.
     'photo',
+    # accounts 앱을 추가한다.
+    'accounts',
+    # accounts/urls.py로 이동
 ]
 
 MIDDLEWARE = [
@@ -144,3 +147,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # 기존에 있던 프로젝트 루트의 photos 폴더는 제거한다.
 
 # admin.py로 이동해서 5.3.5 관리자 페이지 커스터마이징보기
+
+# settings.py에 LOGIN_REDIRECT_URL 변수를 추가한다.
+LOGIN_REDIRECT_URL = '/'
+# LOGIN_REDIRECT_URL은 로그인 후 이동할 페이지 옵션이다.
+# 이 변수의 값을 '/'로 설정하면 로그인 후에 메인 페이지로 이동한다.

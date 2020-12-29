@@ -24,6 +24,10 @@ urlpatterns = [
     # path를 하나 추가해 photo.urls를 연결해준다.
     # 이 때 URL 패턴을 ''로 설정하면 photo 앱이 메인 페이지로 동작한다.
     path('', include('photo.urls')),
+    # 로그인, 로그아웃용 url
+    path('accounts/', include('accounts.urls')),
+    # 이제 로그인, 로그아웃 기능은 동작할 것이다. 템플릿을 만들고 마무리하겠다.
+    # accounts/templates/registration/login.html로 이동
 ]
 # 5.3.8 템플릿 분리와 확장 -> base.html로 이동
 

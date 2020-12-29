@@ -1,0 +1,6 @@
+사진 관련 기능을 완성했으니 서비스의 완성도를 높이기 위해 회원 가입, 로그인, 로그아웃 기능을 만들어보자.
+
+5.4.1 accounts 앱 만들기
+파이참 터미널에서 python manage.py startapp accounts 명령어를 실행해 accounts 앱을 생성한다.
+
+그리고 settings.py의 INSTALLED_APPS에 앱을 추가한다.

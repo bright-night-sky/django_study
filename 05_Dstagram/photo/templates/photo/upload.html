@@ -18,6 +18,7 @@
             <!--    3. text/plain : 띄어쓰기만 +로 변환하고 특별한 인코딩 없이 전달한다. -->
             <form action="" method="post" enctype="multipart/form-data">
                 {{ form.as_p }}
+                <!-- 외부 사이트에서 우리의 내부 사이트인 것처럼 글을 쓰게 하는 것을 방지 -->
                 {% csrf_token %}
                 <input type="submit" class="btn btn-primary" value="Upload">
             </form>

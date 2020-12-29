@@ -21,10 +21,16 @@
                     {% if user.is_authenticated %}
                         <li class="nav-item"><a href="#" class="nav-link">Welcome, {{ user.get_username }}</a></li>
                         <li class="nav-item"><a href="{% url 'photo:photo_upload' %}" class="nav-link">Upload</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Logout</a></li>
+                        <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Logout</a></li>
                     {% else %}
-                        <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Signup</a></li>
+                        <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">Login</a></li>
+                        <!-- [Login] 버튼을 누르면 로그인은 잘 됐으나 profile이라는 페이지로 이동한다. -->
+                        <!-- 하지만 우리는 만들어두지 않았기 때문에 Page not found 오류만 나타난다. -->
+                        <!-- 로그인 후 이동할 페이지 설정의 기본값이 profile이기 때문이다. -->
+                        <!-- 로그인 후에 바로 메인 페이지로 이동하도록 변경해보자. -->
+                        <!-- settings.py 맨 밑으로 -->
+                        <li class="nav-item"><a href="{% url 'register' %}" class="nav-link">Signup</a></li>
+                        <!-- 필요한 코드를 다 입력했다. 기능 테스트를 위해 메인 메뉴에 있는 [Signup] 링크를 클릭해 회원 가입 페이지로 이동해보자. -->
                     {% endif %}
                 </ul>
             </nav>
