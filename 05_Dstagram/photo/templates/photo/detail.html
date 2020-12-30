@@ -23,6 +23,18 @@
         </div>
         <div class="col-md-2"></div>
     </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 panel panel-default">
+            <!-- load disqus_tags는 disqus 앱의 커스텀 태그들을 사용하겠다라는 의미이다. -->
+            {% load disqus_tags %}
+            <!-- 아랫줄에서 그 커스텀 태그 중에 하나인 disqus_show_comments라는 태그를 사용해 댓글 시스템을 출력하도록 했다. -->
+            {% disqus_show_comments %}
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <!-- detail.html 파일을 수정했다면 서버를 실행하고 확인해보자. -->
+    <!-- 5.5.3 권한 제한하기 : views.py로 이동 -->
 {% endblock %}
 
 <!-- 상세 화면도 마찬가지로 사진은 정상적으로 표시되지 않는다. -->

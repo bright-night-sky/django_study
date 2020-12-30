@@ -46,6 +46,28 @@ INSTALLED_APPS = [
     # accounts 앱을 추가한다.
     'accounts',
     # accounts/urls.py로 이동
+
+    # 5.5 댓글 기능 구현하기
+    # 댓글은 웹 서비스에서 기본으로 갖추어야 하는 기능 중에 하나가 되었다.
+    # 이번 절에서는 디스타그램 서비스에 댓글 기능을 구현해보겠다.
+    # 하지만 장고에 코드를 만들어서 댓글을 구현하는 것은 JavaScript를 많이 다뤄야 하는 부분이다.
+    # 이 책의 범위를 넘어서는 부분이기 때문에 기존에 구현되어 있는 댓글 앱을 다운로드 받아서 적용해 보도록 하자.
+    # 5.5.1 DISQUS 가입하기
+    # 댓글 시스템을 직접 만들지 않고 DISQUS라는 온라인 소셜 댓글 시스템을 빌려서 사용해보자.
+    # 이 시스템을 사용하려면 사이트에 가입해야한다.
+    # 가입하고 설정완료했다.
+    # pip install django-disqus로 앱을 설치한다.
+    # 설치한 앱도 우리가 만든 앱과 마찬가지로 settings.py에 등록해줘야한다.
+    'disqus',
+    'django.contrib.sites',
+    # disqus와 django.contrib.sites 두 개를 추가한다.
+    # sites는 장고에서 사용하는 사이트 관리 프레임워크이다.
+    # 멀티사이트 구성이나 개별 사이트의 도메인 관리 등을 담당한다.
+    # disqus 앱을 사용하려면 필요하기 때문에 같이 등록해줬다.
+    # six 모듈 관련 오류가 뜬다. 검색하면 찾아서 고칠 수 있다.
+    # python manage.py migrate 명령을 실행해 sites 앱을 위한 데이터베이스를 설정한다.
+    # 이제 disqus 사용을 위한 설정값을 추가하자.
+    # settings.py 맨 밑에 두 개의 변수를 추가한다.
 ]
 
 MIDDLEWARE = [
@@ -152,3 +174,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = '/'
 # LOGIN_REDIRECT_URL은 로그인 후 이동할 페이지 옵션이다.
 # 이 변수의 값을 '/'로 설정하면 로그인 후에 메인 페이지로 이동한다.
+
+# disqus 사용을 위한 변수 2개
+# DISQUS_WEBSITE_SHORTNAME 변수는 disqus에 설정해둔 이름을 써야한다.
+# 혹시 생각이 안나면 disqus 사이트로 가서 확인해보면 된다.
+DISQUS_WEBSITE_SHORTNAME = 'brightnightsky-dstagram'
+# SITE_ID 변수는 sites 앱에 등록된 현재 사이트의 번호이다.
+# 기본적으로는 1번이다.
+SITE_ID = 1
+# 설정은 끝났다. 이제 템플릿에 댓글 시스템이 출력되도록 수정만 하면 된다.
+# 댓글 시스템은 각 사진의 상세 페이지에서 보여주도록 하자.
+# detail.html로 이동
